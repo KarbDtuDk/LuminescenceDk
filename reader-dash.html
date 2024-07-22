@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> TL/OSL reader </title>
+  <link href="./bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style type="text/css">
+    .risoe-h1 {
+      /* Bootstrap .mt-4 equivalent */
+      margin-top: 1.5rem !important;
+    }
+
+    .risoe-img {
+      /* Bootstrap .img-fluid equivalent */
+      max-width: 100%;
+      height: auto;
+      /* Bootstrap .m-4 equivalent */
+      margin: 1.5rem !important;
+    }
+  </style>
+  
+
+
+  
+
+<style type="text/css">
+  .sidebar li .submenu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .sidebar .nav-link {
+    font-weight: 500;
+    color: var(--bs-dark);
+  }
+
+  .sidebar .nav-link:hover {
+    color: var(--bs-primary);
+  }
+</style>
+
+<!-- 
+  <script type="text/javascript">
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+      document.querySelectorAll('.sidebar .nav-link').forEach(function (element) {
+
+        element.addEventListener('click', function (e) {
+
+          let nextEl = element.nextElementSibling;
+          let parentEl = element.parentElement;
+
+          if (nextEl) {
+            e.preventDefault();
+            let mycollapse = new bootstrap.Collapse(nextEl);
+
+            if (nextEl.classList.contains('show')) {
+              mycollapse.hide();
+            } else {
+              mycollapse.show();
+              // find other submenus with class=show
+              var opened_submenu = parentEl.parentElement.querySelector('.submenu.show');
+              // if it exists, then close all of them
+              if (opened_submenu) {
+                new bootstrap.Collapse(opened_submenu);
+              }
+
+            }
+          }
+
+        });
+      })
+
+    });
+    // DOMContentLoaded  end
+  </script>
+ -->
+
+</head>
+
+<body>
+  <div class="container my-5">
+    <header>
+      <nav class="navbar Xfixed-top navbar-expand-lg Xnavbar-dark Xbg-dark" style="background-color: #e3f2fd;">
+    <div class="container">
+        <a class="navbar-brand" href="index.html"><img src="./logo/risoe.svg" alt="RISØ" width="76" height="36"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link Xactive" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="reader.html">TL/OSL reader</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="beta.html">Beta counter</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="gamma.html">Gamma spectrometer</a>
+                </li>
+                <!--<li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">Disabled</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>-->
+        </div>
+    </div>
+</nav>
+    </header>
+
+    
+<div class="row">
+  <div class="col-md-4 d-none d-lg-block">
+    <nav class="sidebar card py-2 my-4">
+      <!-- Navigation -->
+<ul class="nav flex-column" id="nav_accordion">
+    <li class="nav-item">
+        <a class="nav-link" href="reader.html">Risø TL/OSL reader </a>
+    </li>
+    <li class="nav-item has-submenu">
+        <a class="nav-link" href="reader-details.html"> Reader details <i class="bi small bi-caret-down-fill"></i> </a>
+        <ul class="submenu Xcollapse">
+            <li><a class="nav-link" href="reader-dash.html"> DASH </a></li>
+            <li><a class="nav-link" href="reader-irradiation.html"> Irradiation sources </a></li>
+            <li><a class="nav-link" href="reader-sg.html"> Single grain </a> </li>
+            <li><a class="nav-link" href="reader-stimulation.html"> Stimulation sources </a> </li>
+            <li><a class="nav-link" href="reader-pulsing.html"> Pulsed OSL </a> </li>
+            <li><a class="nav-link" href="reader-bleaching.html"> Bleaching </a> </li>
+            <li><a class="nav-link" href="reader-rl.html"> Radioluminescence </a> </li>
+            <li><a class="nav-link" href="reader-camera.html"> Sample camera </a> </li>
+            <li><a class="nav-link" href="reader-xrf.html"> X-ray fluorescence </a> </li>
+            <li><a class="nav-link" href="reader-accessories.html"> Accessories </a> </li>
+        </ul>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="reader-customers.html"> Customer list </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="reader-downloads.html"> Downloads </a>
+    </li>
+</ul>
+<!-- Navigation -->
+
+      <!-- Navigation
+      <ul class="nav flex-column" id="nav_accordion">
+        <li class="nav-item">
+          <a class="nav-link" href="#"> Link name </a>
+        </li>
+        <li class="nav-item has-submenu">
+          <a class="nav-link" href="#"> Submenu links <i class="bi small bi-caret-down-fill"></i> </a>
+          <ul class="submenu Xcollapse">
+            <li><a class="nav-link" href="#">Submenu item 1 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 2 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 3 </a> </li>
+          </ul>
+        </li>
+        <li class="nav-item has-submenu">
+          <a class="nav-link" href="#"> More menus <i class="bi small bi-caret-down-fill"></i> </a>
+          <ul class="submenu Xcollapse">
+            <li><a class="nav-link" href="#">Submenu item 4 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 5 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 6 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 7 </a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-submenu">
+          <a class="nav-link" href="#"> Another submenus <i class="bi small bi-caret-down-fill"></i> </a>
+          <ul class="submenu Xcollapse">
+            <li><a class="nav-link" href="#">Submenu item 8 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 9 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 10 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 11 </a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"> Demo link </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"> Menu item </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"> Something </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"> Other link </a>
+        </li>
+      </ul>
+      Navigation -->
+    </nav>
+  </div>
+  <div class="col">
+    <button class="btn btn-outline-dark btn-light d-lg-none mt-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu">
+      <i class="bi bi-three-dots-vertical"></i> Reader docs
+    </button>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Reader docs</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+      </div>
+      <div class="offcanvas-body">
+        <nav class="sidebar Xcard py-2 mb-4">
+          <!-- Navigation -->
+<ul class="nav flex-column" id="nav_accordion">
+    <li class="nav-item">
+        <a class="nav-link" href="reader.html">Risø TL/OSL reader </a>
+    </li>
+    <li class="nav-item has-submenu">
+        <a class="nav-link" href="reader-details.html"> Reader details <i class="bi small bi-caret-down-fill"></i> </a>
+        <ul class="submenu Xcollapse">
+            <li><a class="nav-link" href="reader-dash.html"> DASH </a></li>
+            <li><a class="nav-link" href="reader-irradiation.html"> Irradiation sources </a></li>
+            <li><a class="nav-link" href="reader-sg.html"> Single grain </a> </li>
+            <li><a class="nav-link" href="reader-stimulation.html"> Stimulation sources </a> </li>
+            <li><a class="nav-link" href="reader-pulsing.html"> Pulsed OSL </a> </li>
+            <li><a class="nav-link" href="reader-bleaching.html"> Bleaching </a> </li>
+            <li><a class="nav-link" href="reader-rl.html"> Radioluminescence </a> </li>
+            <li><a class="nav-link" href="reader-camera.html"> Sample camera </a> </li>
+            <li><a class="nav-link" href="reader-xrf.html"> X-ray fluorescence </a> </li>
+            <li><a class="nav-link" href="reader-accessories.html"> Accessories </a> </li>
+        </ul>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="reader-customers.html"> Customer list </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="reader-downloads.html"> Downloads </a>
+    </li>
+</ul>
+<!-- Navigation -->
+        </nav>
+
+        <!-- <div>
+          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists,
+          etc.
+        </div>
+        <div class="dropdown mt-3">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            Dropdown button
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </div> -->
+      </div>
+    </div>
+
+    
+
+<h1 class="risoe-h1">Detection and Stimulation Head</h1>
+
+<p>
+    The Detection and Stimulation Head (DASH) provides easy access to new technologies, new signals and new measurement methods. The DASH is fully automated and contains LED modules for optical stimulation, a filter changer and a detector changer (optional). The DASH can accomodate a variety of attachments such as the single grain attachment and the spectrometer. The DASH can be retrospectively fitted to existing Risø TL/OSL Readers. The DASH is modularised into four layers:
+</p>
+<ul>
+    <li>Optical stimulation unit (bottom layer)</li>
+    <li>Filter changer (middle two layers)</li>
+    <li>Detector changer (top layer)</li>
+</ul>
+
+<h2>Optical stimulation</h2>
+
+<p>
+    The OSL unit has 7 reflector modules for mounting LEDs. The modules may be equipped to the requirements of the user but the standard configuration is:
+</p>
+<ul>
+    <li>2 blue modules (470 nm, ~80 mW/cm<sup>2</sup>)</li>
+    <li>2 green modules (525 nm, ~40 mW/cm<sup>2</sup>)</li>
+    <li>3 infrared modules (850 nm, ~300 mW/cm<sup>2</sup>)</li>
+</ul>
+
+<figure class="figure">
+    <img src="images/dash-osl.jpg" class="figure-img img-fluid rounded" alt="DASH optical stimulation">
+    <!-- <figcaption class="figure-caption text-end">Abc</figcaption> -->
+</figure>
+
+<p>
+    The OSL unit includes an empty position to enable the use of external light stimulation sources such as the violet laser and single grain attachments or a user-supplied stimulation source.
+</p>
+
+<p>
+    The LED intensity can be fixed (CW), linearily modulated (LM-OSL) or pulsed (POSL). For optimal linearity and stability the LEDs are controlled using photo-diode feedback regulation and held constant at any power level between 0 and 100%.
+</p>
+
+<h2>Detector changer</h2>
+
+<p>
+    The detector changer can accommodate up to three detectors. The DASH is fitted with collimating optics shared by all detectors. The optics are optimised for maximum transmission or, if the EMCCD camera is fitted, the best compromise between minimum non-linear distortion and maximum optical transmission.
+</p>
+
+<p>The standard PMT is:</p>
+<ul>
+    <li>Electron Tube PDM 9107Q-AP-TTL-03 (160-630 nm)</li>
+</ul>
+
+<p>Other detection units available are:</p>
+<ul>
+    <li>a cooled PMT Hamamatsu H7421-50 (380-890 nm),</li>
+    <li>a cooled PMT Hamamatsu H7421-40 (300-720 nm),</li>
+    <li>an EMCCD camera (Photometrics Evolve 512) with automatically adjustable focusing optics,</li>
+    <li>and a spectrometer system (Andor EMCCD camera mounted on a Shamrock 193 spectrograph).</li>
+</ul>
+
+<h2>Filter changer</h2>
+
+<p>
+    The filter changer consists of two layers, each with 4 positions for standard commercially available 25 mm diameter filters. The filters can be stacked up to a thickness of 7.5 mm in each of the 8 filter holders.
+</p>
+
+<img class="risoe-img" src="images/dash-filter-changer.png" alt="DASH filter changer">
+
+<p>A typical configuration of filters is:</p>
+<ul>
+    <li>Layer 1
+        <ul>
+            <li>U-340, 5 mm</li>
+            <li>Blue filter pack (BG3, 3 mm and BG39, 2 mm)</li>
+        </ul>
+    </li>
+    <li>Layer 2
+        <ul>
+            <li>U-340, 2.5 mm</li>
+            <li>neutral density for PMT deadtime measurement</li>
+        </ul>
+    </li>
+</ul>
+
+
+  </div>
+</div>
+
+
+    <div class="container" style="background-color: #e3f2fd;">
+    <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-3 py-5 my-3 border-top ps-5">
+        <div class="col mb-2">
+            <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
+                <img src="./logo/risoe.svg" alt="RISØ" width="125" height="60">
+                <!--
+                <span class="badge text-bg-danger">RISØ</span>
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap" />
+                </svg>
+                -->
+            </a>
+            <p class="text-body-secondary">&copy; 2024, DTU Physics</p>
+            <h5 class="mt-4">Product catalogue</h5>
+            <p class="text-body-secondary"><a href="https://www.fysik.dtu.dk/english/-/media/institutter/fysik/research/radiation-physics/produkter-og-services/radiation_measurement_instruments/tl_osl_reader/brochure/product-catalogue-2103a.pdf" class="nav-link p-0 text-body-secondary">Download PDF</a></p>
+        </div>
+
+        <div class="col mb-2">
+            <h5>Contact</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2">Product information:
+                </li>
+                <li class="nav-item mb-2"><a href="mailto:osl@ntech.dtu.dk" class="nav-link p-0 text-body-secondary">osl@ntech.dtu.dk</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"></a>&nbsp;</li>
+                <li class="nav-item mb-2">Technical support:
+                </li>
+                <li class="nav-item mb-2"><a href="mailto:oslservice@ntech.dtu.dk" class="nav-link p-0 text-body-secondary">oslservice@ntech.dtu.dk</a></li>
+            </ul>
+        </div>
+
+        <div class="col mb-2">
+            <h5>Quick links</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="https://www.dtu.dk/english/" class="nav-link p-0 text-body-secondary">DTU</a></li>
+                <li class="nav-item mb-2"><a href="https://www.fysik.dtu.dk/english/" class="nav-link p-0 text-body-secondary">DTU Physics</a></li>
+                <li class="nav-item mb-2"><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/luminescence-physics" class="nav-link p-0 text-body-secondary">Luminescence Physics</a></li>
+                <li class="nav-item mb-2"><a href="index.html" class="nav-link p-0 text-body-secondary">Radiation Instruments</a></li>
+                <li class="nav-item mb-2"><a href="reader.html" class="nav-link p-0 text-body-secondary">Risø TL/OSL Reader</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
+  </div>
+
+  <script src="./bootstrap/bootstrap.bundle.min.js"></script>
+  <script>
+    var filename = window.location.pathname;
+    // var link = filename.substring(1, (filename.length - 5));
+    var link = filename.replace('dist/', '').replace('/', '').replace('.html', '')  // for test environment
+    let navlink = document.querySelector('[href^=' + link + ']')
+    navlink.classList.add('active')
+  </script>
+</body>
+
+</html>

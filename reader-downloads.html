@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> TL/OSL reader </title>
+  <link href="./bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style type="text/css">
+    .risoe-h1 {
+      /* Bootstrap .mt-4 equivalent */
+      margin-top: 1.5rem !important;
+    }
+
+    .risoe-img {
+      /* Bootstrap .img-fluid equivalent */
+      max-width: 100%;
+      height: auto;
+      /* Bootstrap .m-4 equivalent */
+      margin: 1.5rem !important;
+    }
+  </style>
+  
+
+
+  
+
+<style type="text/css">
+  .sidebar li .submenu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .sidebar .nav-link {
+    font-weight: 500;
+    color: var(--bs-dark);
+  }
+
+  .sidebar .nav-link:hover {
+    color: var(--bs-primary);
+  }
+</style>
+
+<!-- 
+  <script type="text/javascript">
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+      document.querySelectorAll('.sidebar .nav-link').forEach(function (element) {
+
+        element.addEventListener('click', function (e) {
+
+          let nextEl = element.nextElementSibling;
+          let parentEl = element.parentElement;
+
+          if (nextEl) {
+            e.preventDefault();
+            let mycollapse = new bootstrap.Collapse(nextEl);
+
+            if (nextEl.classList.contains('show')) {
+              mycollapse.hide();
+            } else {
+              mycollapse.show();
+              // find other submenus with class=show
+              var opened_submenu = parentEl.parentElement.querySelector('.submenu.show');
+              // if it exists, then close all of them
+              if (opened_submenu) {
+                new bootstrap.Collapse(opened_submenu);
+              }
+
+            }
+          }
+
+        });
+      })
+
+    });
+    // DOMContentLoaded  end
+  </script>
+ -->
+
+</head>
+
+<body>
+  <div class="container my-5">
+    <header>
+      <nav class="navbar Xfixed-top navbar-expand-lg Xnavbar-dark Xbg-dark" style="background-color: #e3f2fd;">
+    <div class="container">
+        <a class="navbar-brand" href="index.html"><img src="./logo/risoe.svg" alt="RISØ" width="76" height="36"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link Xactive" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="reader.html">TL/OSL reader</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="beta.html">Beta counter</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="gamma.html">Gamma spectrometer</a>
+                </li>
+                <!--<li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">Disabled</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>-->
+        </div>
+    </div>
+</nav>
+    </header>
+
+    
+<div class="row">
+  <div class="col-md-4 d-none d-lg-block">
+    <nav class="sidebar card py-2 my-4">
+      <!-- Navigation -->
+<ul class="nav flex-column" id="nav_accordion">
+    <li class="nav-item">
+        <a class="nav-link" href="reader.html">Risø TL/OSL reader </a>
+    </li>
+    <li class="nav-item has-submenu">
+        <a class="nav-link" href="reader-details.html"> Reader details <i class="bi small bi-caret-down-fill"></i> </a>
+        <ul class="submenu Xcollapse">
+            <li><a class="nav-link" href="reader-dash.html"> DASH </a></li>
+            <li><a class="nav-link" href="reader-irradiation.html"> Irradiation sources </a></li>
+            <li><a class="nav-link" href="reader-sg.html"> Single grain </a> </li>
+            <li><a class="nav-link" href="reader-stimulation.html"> Stimulation sources </a> </li>
+            <li><a class="nav-link" href="reader-pulsing.html"> Pulsed OSL </a> </li>
+            <li><a class="nav-link" href="reader-bleaching.html"> Bleaching </a> </li>
+            <li><a class="nav-link" href="reader-rl.html"> Radioluminescence </a> </li>
+            <li><a class="nav-link" href="reader-camera.html"> Sample camera </a> </li>
+            <li><a class="nav-link" href="reader-xrf.html"> X-ray fluorescence </a> </li>
+            <li><a class="nav-link" href="reader-accessories.html"> Accessories </a> </li>
+        </ul>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="reader-customers.html"> Customer list </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="reader-downloads.html"> Downloads </a>
+    </li>
+</ul>
+<!-- Navigation -->
+
+      <!-- Navigation
+      <ul class="nav flex-column" id="nav_accordion">
+        <li class="nav-item">
+          <a class="nav-link" href="#"> Link name </a>
+        </li>
+        <li class="nav-item has-submenu">
+          <a class="nav-link" href="#"> Submenu links <i class="bi small bi-caret-down-fill"></i> </a>
+          <ul class="submenu Xcollapse">
+            <li><a class="nav-link" href="#">Submenu item 1 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 2 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 3 </a> </li>
+          </ul>
+        </li>
+        <li class="nav-item has-submenu">
+          <a class="nav-link" href="#"> More menus <i class="bi small bi-caret-down-fill"></i> </a>
+          <ul class="submenu Xcollapse">
+            <li><a class="nav-link" href="#">Submenu item 4 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 5 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 6 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 7 </a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-submenu">
+          <a class="nav-link" href="#"> Another submenus <i class="bi small bi-caret-down-fill"></i> </a>
+          <ul class="submenu Xcollapse">
+            <li><a class="nav-link" href="#">Submenu item 8 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 9 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 10 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 11 </a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"> Demo link </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"> Menu item </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"> Something </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"> Other link </a>
+        </li>
+      </ul>
+      Navigation -->
+    </nav>
+  </div>
+  <div class="col">
+    <button class="btn btn-outline-dark btn-light d-lg-none mt-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu">
+      <i class="bi bi-three-dots-vertical"></i> Reader docs
+    </button>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Reader docs</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+      </div>
+      <div class="offcanvas-body">
+        <nav class="sidebar Xcard py-2 mb-4">
+          <!-- Navigation -->
+<ul class="nav flex-column" id="nav_accordion">
+    <li class="nav-item">
+        <a class="nav-link" href="reader.html">Risø TL/OSL reader </a>
+    </li>
+    <li class="nav-item has-submenu">
+        <a class="nav-link" href="reader-details.html"> Reader details <i class="bi small bi-caret-down-fill"></i> </a>
+        <ul class="submenu Xcollapse">
+            <li><a class="nav-link" href="reader-dash.html"> DASH </a></li>
+            <li><a class="nav-link" href="reader-irradiation.html"> Irradiation sources </a></li>
+            <li><a class="nav-link" href="reader-sg.html"> Single grain </a> </li>
+            <li><a class="nav-link" href="reader-stimulation.html"> Stimulation sources </a> </li>
+            <li><a class="nav-link" href="reader-pulsing.html"> Pulsed OSL </a> </li>
+            <li><a class="nav-link" href="reader-bleaching.html"> Bleaching </a> </li>
+            <li><a class="nav-link" href="reader-rl.html"> Radioluminescence </a> </li>
+            <li><a class="nav-link" href="reader-camera.html"> Sample camera </a> </li>
+            <li><a class="nav-link" href="reader-xrf.html"> X-ray fluorescence </a> </li>
+            <li><a class="nav-link" href="reader-accessories.html"> Accessories </a> </li>
+        </ul>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="reader-customers.html"> Customer list </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="reader-downloads.html"> Downloads </a>
+    </li>
+</ul>
+<!-- Navigation -->
+        </nav>
+
+        <!-- <div>
+          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists,
+          etc.
+        </div>
+        <div class="dropdown mt-3">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            Dropdown button
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </div> -->
+      </div>
+    </div>
+
+    
+
+<h1 class="risoe-h1"> Downloads </h1>
+
+<h2>Product catalogue</h2>
+<ul>
+    <li><a href="https://www.fysik.dtu.dk/english/-/media/institutter/fysik/research/radiation-physics/produkter-og-services/radiation_measurement_instruments/tl_osl_reader/brochure/product-catalogue-2103a.pdf"> Catalogue </a></li>
+</ul>
+
+<h2> Manuals </h2>
+<ul>
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/C4BC9B64645C4FCE9013D3C1662882DD.ashx"> Installation requirements </a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/-/media/institutter/fysik/nutech/produkter-og-services/radiation_measurement_instruments/tl_osl_reader/manuals/reader.pdf">Guide to “The Risø TL/OSL Reader” </a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/-/media/institutter/fysik/research/radiation-physics/produkter-og-services/radiation_measurement_instruments/tl_osl_reader/manuals/betasource.pdf"> Beta source </a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/1C0292F237204B1FAE196CA333443C4F.ashx"> Guide to "The Risø Pulsed OSL attachment" </a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/D3221B952AA744BA8B379942BDBD7272.ashx"> Guide to "The Risø Pulsed OSL attachment" - Standalone version</a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/C4AA8F4913484CBEA7385043EA2001EE.ashx"> Guide to "The Risø Single grain laser OSL system"</a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/FE7A039AB0D348DF84E39C9C67B086F1.ashx"> Sequence Editor User Manual</a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/C0B5E815006D421B9D7EDC185664160E.ashx"> Viewer User Manual</a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/1B30BA922C6C4747A1C8838E1E4F00D7.ashx"> Analyst Manual </a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/DFDB77EE9E7F4F09891F455A8A5E0119.ashx"> Photon Timer User Manual</a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/1321FC0BB92349219C16812EBF61CD84.ashx"> Low level commands</a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/592F5151C84A4FB0B2E956E557EA5B40.ashx"> Guide to Risø XHV-1 X-ray unit</a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/000FA18C20E247A4A2CCD2B6B77075A8.ashx"> Radioluminescence User Manual</a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/580A68AFA0A74608857E8A146399D127.ashx"> Automated DASH Manual</a></li>
+</ul>
+
+<h2> Technical notes </h2>
+<ul>
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/4C2BB19C882D4868BC35F58C61814ABE.ashx">How to check temperature calibration</a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/26A43B76C6734458A2D63B9C05F334D1.ashx">Spreadsheet for checking temperature calibration</a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/7EFF380DA229464A948D1F3B3E5351CD.ashx">External dose rates from reader </a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/18946D8B5FE140CDB07771F1E88CA46D.ashx">Command file error that causes no heating during Single Grain stimulation</a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/874AD31797E84D84976D7C503F13C4B2.ashx">Risø TL/OSL Reader Radiation Safety</a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/7527877EBF6946A3963C60FFBEDA46DE.ashx">Acoustic warning of lift up</a></li>
+</ul>
+
+<h2>Software</h2>
+
+<ul>
+    <li><a href="https://www.dropbox.com/s/5wnj46uz9g8hywu/Risoe%20TLOSL%20Software%20Package%202021-A.zip?dl=0">Most recent general available TL/OSL software package</a></li>
+</ul>
+
+More specialised software:
+<ul>
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/95A17D45CEEF48D99612FEC0FD41B1CC.ashx">R_FLTDET</a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/0A859C4FA9984BAC9D724B2698D0B3D3.ashx">Mini-sys</a> (Do not use this to update the old PC Mini-sys)</li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/0E4F5B3DED8A494D9DD1E28DB2598447.ashx">CorrSGbin</a> (v1.5 of June 2018)</li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/6737EFE14E5442EB861BD6D70BCBA98A.ashx">DTcorrChange</a></li>
+
+    <li><a href="https://www.dropbox.com/s/e1ltriksa3imop2/EMCCDexample.zip?dl=0">EMCCD example data</a></li>
+
+    <li><a href="http://se.mathworks.com/supportfiles/downloads/R2014a/deployment_files/R2014a/installers/win32/MCR_R2014a_win32_installer.exe">MATLAB Runtime 8.3 32-bit</a></li>
+
+    <li><a href="http://se.mathworks.com/supportfiles/downloads/R2014a/deployment_files/R2014a/installers/win64/MCR_R2014a_win64_installer.exe">MATLAB Runtime 8.3 64-bit</a></li>
+
+    <li><a href="https://ssd.mathworks.com/supportfiles/downloads/R2019b/Release/7/deployment_files/installer/complete/win64/MATLAB_Runtime_R2019b_Update_7_win64.zip">MATLAB Runtime 9.7 64-bit</a></li>
+</ul>
+
+
+<p>Software change notes:</p>
+
+<ul>
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/E6F0E766FF5C47ABAC7A61F6789679D0.ashx">Revision history for Risø TL/OSL Software</a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/FD101D8E0C5046828E82B630F269E7E7.ashx">Introduction of a “Sequence file copy” in the Sequence editor</a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/968C1132BC4040F8A584523C24AA1F06.ashx">Changes to Sequence Editor, Viewer, and Control programs V4 compared to V3</a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/6EDB9C15C48F478191B67403644D30C4.ashx">New Software features, Feb 13</a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/E73D50667CE24F71BB3ADBD88DC4E1F1.ashx">New Sequence Control functions, Jan 15</a></li>
+
+    <li><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/radiation-instruments/tl_osl_reader/-/media/D86877AB3B884C2E889EF7A0F9B3DA1E.ashx">Overview and recent improvements of Analyst, Jun 15</a></li>
+</ul>
+
+
+
+  </div>
+</div>
+
+
+    <div class="container" style="background-color: #e3f2fd;">
+    <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-3 py-5 my-3 border-top ps-5">
+        <div class="col mb-2">
+            <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
+                <img src="./logo/risoe.svg" alt="RISØ" width="125" height="60">
+                <!--
+                <span class="badge text-bg-danger">RISØ</span>
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap" />
+                </svg>
+                -->
+            </a>
+            <p class="text-body-secondary">&copy; 2024, DTU Physics</p>
+            <h5 class="mt-4">Product catalogue</h5>
+            <p class="text-body-secondary"><a href="https://www.fysik.dtu.dk/english/-/media/institutter/fysik/research/radiation-physics/produkter-og-services/radiation_measurement_instruments/tl_osl_reader/brochure/product-catalogue-2103a.pdf" class="nav-link p-0 text-body-secondary">Download PDF</a></p>
+        </div>
+
+        <div class="col mb-2">
+            <h5>Contact</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2">Product information:
+                </li>
+                <li class="nav-item mb-2"><a href="mailto:osl@ntech.dtu.dk" class="nav-link p-0 text-body-secondary">osl@ntech.dtu.dk</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"></a>&nbsp;</li>
+                <li class="nav-item mb-2">Technical support:
+                </li>
+                <li class="nav-item mb-2"><a href="mailto:oslservice@ntech.dtu.dk" class="nav-link p-0 text-body-secondary">oslservice@ntech.dtu.dk</a></li>
+            </ul>
+        </div>
+
+        <div class="col mb-2">
+            <h5>Quick links</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="https://www.dtu.dk/english/" class="nav-link p-0 text-body-secondary">DTU</a></li>
+                <li class="nav-item mb-2"><a href="https://www.fysik.dtu.dk/english/" class="nav-link p-0 text-body-secondary">DTU Physics</a></li>
+                <li class="nav-item mb-2"><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/luminescence-physics" class="nav-link p-0 text-body-secondary">Luminescence Physics</a></li>
+                <li class="nav-item mb-2"><a href="index.html" class="nav-link p-0 text-body-secondary">Radiation Instruments</a></li>
+                <li class="nav-item mb-2"><a href="reader.html" class="nav-link p-0 text-body-secondary">Risø TL/OSL Reader</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
+  </div>
+
+  <script src="./bootstrap/bootstrap.bundle.min.js"></script>
+  <script>
+    var filename = window.location.pathname;
+    // var link = filename.substring(1, (filename.length - 5));
+    var link = filename.replace('dist/', '').replace('/', '').replace('.html', '')  // for test environment
+    let navlink = document.querySelector('[href^=' + link + ']')
+    navlink.classList.add('active')
+  </script>
+</body>
+
+</html>

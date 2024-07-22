@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Beta counter </title>
+  <link href="./bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style type="text/css">
+    .risoe-h1 {
+      /* Bootstrap .mt-4 equivalent */
+      margin-top: 1.5rem !important;
+    }
+
+    .risoe-img {
+      /* Bootstrap .img-fluid equivalent */
+      max-width: 100%;
+      height: auto;
+      /* Bootstrap .m-4 equivalent */
+      margin: 1.5rem !important;
+    }
+  </style>
+  
+
+
+  
+
+<style type="text/css">
+    .sidebar li .submenu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .sidebar .nav-link {
+        font-weight: 500;
+        color: var(--bs-dark);
+    }
+
+    .sidebar .nav-link:hover {
+        color: var(--bs-primary);
+    }
+</style>
+
+
+</head>
+
+<body>
+  <div class="container my-5">
+    <header>
+      <nav class="navbar Xfixed-top navbar-expand-lg Xnavbar-dark Xbg-dark" style="background-color: #e3f2fd;">
+    <div class="container">
+        <a class="navbar-brand" href="index.html"><img src="./logo/risoe.svg" alt="RISØ" width="76" height="36"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link Xactive" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="reader.html">TL/OSL reader</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="beta.html">Beta counter</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="gamma.html">Gamma spectrometer</a>
+                </li>
+                <!--<li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">Disabled</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>-->
+        </div>
+    </div>
+</nav>
+    </header>
+
+    
+<div class="row">
+    <div class="col-md-4 d-none d-lg-block">
+        <nav class="sidebar card py-2 my-4">
+            <!-- Navigation -->
+<ul class="nav flex-column" id="nav_accordion">
+    <li class="nav-item">
+        <a class="nav-link" href="beta.html"> Beta counter</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="beta-customers.html"> Customer list </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="beta-downloads.html"> Downloads </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="beta-accessories.html"> Accessories </a>
+    </li>
+</ul>
+<!-- Navigation -->
+        </nav>
+    </div>
+    <div class="col">
+        <button class="btn btn-outline-dark btn-light d-lg-none mt-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu">
+            <i class="bi bi-three-dots-vertical"></i> Beta counter docs
+        </button>
+
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title">Beta counter docs</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <nav class="sidebar Xcard py-2 mb-4">
+                    <!-- Navigation -->
+<ul class="nav flex-column" id="nav_accordion">
+    <li class="nav-item">
+        <a class="nav-link" href="beta.html"> Beta counter</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="beta-customers.html"> Customer list </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="beta-downloads.html"> Downloads </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="beta-accessories.html"> Accessories </a>
+    </li>
+</ul>
+<!-- Navigation -->
+                </nav>
+            </div>
+        </div>
+
+        
+
+<h1 class="risoe-h1">GM multicounter customer list</h1>
+
+<p>Risø GM multicounter systems GM25-5 have been delivered to the following customers:</p>
+
+
+<h4>Asia</h4>
+<p>
+    East China Normal University, Shanghai, China
+    <br>Environmental Science Research Center, Xiamen , China
+    <br>State Oceanic Administration, Xiamen, China
+    <br>Third Institute of Oceanography, Xiamen, China
+    <br>Xiamen University, Xiamen, China
+    <br>Dept. of Space, Govt of India, Ahmedabad, India
+    <br>Bookyung National University, Seoul, Korea
+    <br>Korea Ocean R&D Institute, Ansan-City, Korea
+    <br>Neosiskorea Co, Ltd., Seoul, Korea
+    <br>SINO Instruments, Taipei, Taiwan
+</p>
+
+<h4>Europe</h4>
+<p>
+    University of Innsbruck, Innsbruck, Austria
+    <br>Department of Analytical and Environ. Chemistry, Bryssels, Belgium
+    <br>Luminescence Dating lab. University of Gent, Belgium
+    <br>National Institute of Meteorology and Hydrology, Sofia, Bulgaria
+    <br>Institute for Medical Research and Occupational Health, Zagreb, Croatia
+    <br>Institute of medical research, Croatia
+    <br>Nordic Laboratory for Luminescence Dating, Roskilde, Denmark
+    <br>Risø National Laboratory, Dept. of Ecology, Roskilde, Denmark
+    <br>Centre for international drylands research, Sheffield, England
+    <br>Oxford University, Oxford, England
+    <br>Southampton Oceanography Centre, Southampton, England
+    <br>University of London, Egham, Surrey, England
+    <br>University of Southampton, Southampton, England
+    <br>University of Torshavn, Faroe Islands
+    <br>Dating Laboratory, Helsinki University, Helsinki, Finland
+    <br>Finnish Centre for Radiation and Nuclear Safety, Rovaniemi, Finland
+    <br>Institute for Radiation Protection, Helsinki, Finland
+    <br>Strålsaekerhetscentralen, Rovaniemi, Finland
+    <br>University of Helsinki, Dept. of Radiochemistry, Helsinki, Finland
+    <br>Institut Universitaire Europeen de la Mer, Plouzane, France
+    <br>Universite Bordeaux 1, Bordeaux, France
+    <br>Alfred Wegener Institute, Bremerhaven, Germany
+    <br>Carl-Albrechts University, Kiel, Germany
+    <br>Deutsches Hydographisches Institut, Hamburg, Germany
+    <br>Geographical Inst. Univ. of Cologne, Cologne, Germany
+    <br>Gesellschaft fur Strahlen- und Umveltforschung, GSF, Munchen, Germany
+    <br>Institute fur Fischereiøkologi, Hamburg, Germany
+    <br>Institute of Aquatic Ecology, University of Rostock, Rostock, Germany
+    <br>Marine Chemistry / Laboratory Suelldorf, Hamburg, Germany
+    <br>Max Planck Inst., Research Lab. Archaeometry, Heidelberg, Germany
+    <br>Riol-Chemie GmbH, Lilienthal, Germany
+    <br>Universitet Rostock, Rostock, Germany
+    <br>Cultural & Educational Technologi Institute, Xanthi, Greece
+    <br>Netherlands Energy Research Foundation, Petten, Holland
+    <br>National Institute of Radiation Protection, Reykjavik, Iceland
+    <br>ENEA, Dept.of Radioecology, Bologna, Italy
+    <br>Environmental Radiometrics Lab., Brasimone, Italy
+    <br>Ignalina Power Plant, Latvia
+    <br>Radiation Safety Centre, Riga, Latvia
+    <br>Ignalina Nuclear Power Plant, Vasaginas, Lithuania
+    <br>IAEA Marine Environment Lab., Monaco, Monaco
+    <br>International Laboratory of Marine Radiactivity, Monaco
+    <br>International Laboratory of Marine Radioactivity, IAEA, Monaco
+    <br>Statens Staålevern, Tromsø, Norge
+    <br>Institute for Energy Research, Kjeller, Norway
+    <br>Institute of Marine Research, Nordnes, Bergen, Norway
+    <br>National Inst. of Radiation Hygiene, Østerås, Norway
+    <br>the Polar See Environmental Centre, Tromsoe, Norway
+    <br>Central Laboratory for Radiologocal Protection, Warsaw, Poland
+    <br>National Laboratory for Technology, Sacavem, Portugal
+    <br>Institute of Medical Research, Obninsk, Russia
+    <br>Dunstaffnage Marine Laboratory, Oban, Scotland
+    <br>Concercio CENIEH, Burgos, Spain
+    <br>University of Sevilla, Dept. of Nuclear Physics, Sevilla, Spain
+    <br>Chalmers University of Technology, Gothenborg, Sweden
+    <br>Dept. of Radioecology, Univ. of Uppsala, Sweden
+    <br>Institute of Environmental Research, Stockholm University, Sweden
+    <br>University of Lund, Radiation Physics Dept., Lund, Sweden
+    <br>Cheltenham & Gloucester College of Higher Education, UK
+    <br>Inst. of Earth Studies, Univ. of Wales, Aberystwyth, UK
+    <br>Research lab. f. Archaeology and the History of Art, Oxford University, UK
+    <br>University of Lancaster, Dept. of Environmental Science, UK
+</p>
+
+<h4>North America</h4>
+<p>
+    <br>Bedford Institute of Oceanography, Nova Scotia, Canada
+    <br>Institute for Ocean Sciences, British Columbia, Sidney, Canada
+    <br>Dauphin Island Sea Lab, Dauphin Island, USA
+    <br>Department of Materials Management, Greenville / North Carolina, USA
+    <br>Dept. of Ecology Evolution, Santa Barbara, USA
+    <br>Geographical Institute, Woods Hole, MA, USA
+    <br>Grad. School of Oceanog., Univ. of Rhode Island, USA
+    <br>Great Lakes Water Institute, Malwaukee, USA
+    <br>Los Alamos National Lab., Los Alamos/New Mexico, USA
+    <br>Louisiana State University, Baton Rouge, USA
+    <br>Marine Science Research Center, State University of NewYork, USA
+    <br>Stone Brook University, New York, USA
+    <br>Texas A&M University, Galveston, USA
+    <br>University of California, La Jolla, USA
+    <br>University of Georgia, Dept. of Geology, Georgia, USA
+    <br>University of Rhode Island, Narragansett, USA
+    <br>University of South Carolina, Columbia, USA
+    <br>University of Washington, Seattle, USA
+    <br>Woods Hole Oceanographic institut, Woods Hole, USA
+</p>
+
+<h4>Oceania</h4>
+<p>
+    <br>Macquarie University, NSW 2109, Australia
+    <br>Office of Supervising Scientists, Dept. of Radiochemistry, Jabiru, Australia
+    <br>University of Melbourne, Dept. of Chemistry, Melbourne, Australia
+    <br>University of Wollongong, Wollongong, Australia
+    <br>Dept. of Oceanography, University of Hawaii, Hawaii
+</p>
+
+<h4>South America</h4>
+<p>
+    Instituto de Pesquisas Energeticas e Nucl., Sao Paulo, Brazil
+</p>
+
+
+    </div>
+</div>
+
+
+    <div class="container" style="background-color: #e3f2fd;">
+    <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-3 py-5 my-3 border-top ps-5">
+        <div class="col mb-2">
+            <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
+                <img src="./logo/risoe.svg" alt="RISØ" width="125" height="60">
+                <!--
+                <span class="badge text-bg-danger">RISØ</span>
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap" />
+                </svg>
+                -->
+            </a>
+            <p class="text-body-secondary">&copy; 2024, DTU Physics</p>
+            <h5 class="mt-4">Product catalogue</h5>
+            <p class="text-body-secondary"><a href="https://www.fysik.dtu.dk/english/-/media/institutter/fysik/research/radiation-physics/produkter-og-services/radiation_measurement_instruments/tl_osl_reader/brochure/product-catalogue-2103a.pdf" class="nav-link p-0 text-body-secondary">Download PDF</a></p>
+        </div>
+
+        <div class="col mb-2">
+            <h5>Contact</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2">Product information:
+                </li>
+                <li class="nav-item mb-2"><a href="mailto:osl@ntech.dtu.dk" class="nav-link p-0 text-body-secondary">osl@ntech.dtu.dk</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"></a>&nbsp;</li>
+                <li class="nav-item mb-2">Technical support:
+                </li>
+                <li class="nav-item mb-2"><a href="mailto:oslservice@ntech.dtu.dk" class="nav-link p-0 text-body-secondary">oslservice@ntech.dtu.dk</a></li>
+            </ul>
+        </div>
+
+        <div class="col mb-2">
+            <h5>Quick links</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="https://www.dtu.dk/english/" class="nav-link p-0 text-body-secondary">DTU</a></li>
+                <li class="nav-item mb-2"><a href="https://www.fysik.dtu.dk/english/" class="nav-link p-0 text-body-secondary">DTU Physics</a></li>
+                <li class="nav-item mb-2"><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/luminescence-physics" class="nav-link p-0 text-body-secondary">Luminescence Physics</a></li>
+                <li class="nav-item mb-2"><a href="index.html" class="nav-link p-0 text-body-secondary">Radiation Instruments</a></li>
+                <li class="nav-item mb-2"><a href="reader.html" class="nav-link p-0 text-body-secondary">Risø TL/OSL Reader</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
+  </div>
+
+  <script src="./bootstrap/bootstrap.bundle.min.js"></script>
+  <script>
+    var filename = window.location.pathname;
+    // var link = filename.substring(1, (filename.length - 5));
+    var link = filename.replace('dist/', '').replace('/', '').replace('.html', '')  // for test environment
+    let navlink = document.querySelector('[href^=' + link + ']')
+    navlink.classList.add('active')
+  </script>
+</body>
+
+</html>

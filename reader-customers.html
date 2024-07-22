@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> TL/OSL reader </title>
+  <link href="./bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style type="text/css">
+    .risoe-h1 {
+      /* Bootstrap .mt-4 equivalent */
+      margin-top: 1.5rem !important;
+    }
+
+    .risoe-img {
+      /* Bootstrap .img-fluid equivalent */
+      max-width: 100%;
+      height: auto;
+      /* Bootstrap .m-4 equivalent */
+      margin: 1.5rem !important;
+    }
+  </style>
+  
+
+
+  
+
+<style type="text/css">
+  .sidebar li .submenu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .sidebar .nav-link {
+    font-weight: 500;
+    color: var(--bs-dark);
+  }
+
+  .sidebar .nav-link:hover {
+    color: var(--bs-primary);
+  }
+</style>
+
+<!-- 
+  <script type="text/javascript">
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+      document.querySelectorAll('.sidebar .nav-link').forEach(function (element) {
+
+        element.addEventListener('click', function (e) {
+
+          let nextEl = element.nextElementSibling;
+          let parentEl = element.parentElement;
+
+          if (nextEl) {
+            e.preventDefault();
+            let mycollapse = new bootstrap.Collapse(nextEl);
+
+            if (nextEl.classList.contains('show')) {
+              mycollapse.hide();
+            } else {
+              mycollapse.show();
+              // find other submenus with class=show
+              var opened_submenu = parentEl.parentElement.querySelector('.submenu.show');
+              // if it exists, then close all of them
+              if (opened_submenu) {
+                new bootstrap.Collapse(opened_submenu);
+              }
+
+            }
+          }
+
+        });
+      })
+
+    });
+    // DOMContentLoaded  end
+  </script>
+ -->
+
+</head>
+
+<body>
+  <div class="container my-5">
+    <header>
+      <nav class="navbar Xfixed-top navbar-expand-lg Xnavbar-dark Xbg-dark" style="background-color: #e3f2fd;">
+    <div class="container">
+        <a class="navbar-brand" href="index.html"><img src="./logo/risoe.svg" alt="RISØ" width="76" height="36"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link Xactive" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="reader.html">TL/OSL reader</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="beta.html">Beta counter</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="gamma.html">Gamma spectrometer</a>
+                </li>
+                <!--<li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">Disabled</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>-->
+        </div>
+    </div>
+</nav>
+    </header>
+
+    
+<div class="row">
+  <div class="col-md-4 d-none d-lg-block">
+    <nav class="sidebar card py-2 my-4">
+      <!-- Navigation -->
+<ul class="nav flex-column" id="nav_accordion">
+    <li class="nav-item">
+        <a class="nav-link" href="reader.html">Risø TL/OSL reader </a>
+    </li>
+    <li class="nav-item has-submenu">
+        <a class="nav-link" href="reader-details.html"> Reader details <i class="bi small bi-caret-down-fill"></i> </a>
+        <ul class="submenu Xcollapse">
+            <li><a class="nav-link" href="reader-dash.html"> DASH </a></li>
+            <li><a class="nav-link" href="reader-irradiation.html"> Irradiation sources </a></li>
+            <li><a class="nav-link" href="reader-sg.html"> Single grain </a> </li>
+            <li><a class="nav-link" href="reader-stimulation.html"> Stimulation sources </a> </li>
+            <li><a class="nav-link" href="reader-pulsing.html"> Pulsed OSL </a> </li>
+            <li><a class="nav-link" href="reader-bleaching.html"> Bleaching </a> </li>
+            <li><a class="nav-link" href="reader-rl.html"> Radioluminescence </a> </li>
+            <li><a class="nav-link" href="reader-camera.html"> Sample camera </a> </li>
+            <li><a class="nav-link" href="reader-xrf.html"> X-ray fluorescence </a> </li>
+            <li><a class="nav-link" href="reader-accessories.html"> Accessories </a> </li>
+        </ul>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="reader-customers.html"> Customer list </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="reader-downloads.html"> Downloads </a>
+    </li>
+</ul>
+<!-- Navigation -->
+
+      <!-- Navigation
+      <ul class="nav flex-column" id="nav_accordion">
+        <li class="nav-item">
+          <a class="nav-link" href="#"> Link name </a>
+        </li>
+        <li class="nav-item has-submenu">
+          <a class="nav-link" href="#"> Submenu links <i class="bi small bi-caret-down-fill"></i> </a>
+          <ul class="submenu Xcollapse">
+            <li><a class="nav-link" href="#">Submenu item 1 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 2 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 3 </a> </li>
+          </ul>
+        </li>
+        <li class="nav-item has-submenu">
+          <a class="nav-link" href="#"> More menus <i class="bi small bi-caret-down-fill"></i> </a>
+          <ul class="submenu Xcollapse">
+            <li><a class="nav-link" href="#">Submenu item 4 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 5 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 6 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 7 </a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-submenu">
+          <a class="nav-link" href="#"> Another submenus <i class="bi small bi-caret-down-fill"></i> </a>
+          <ul class="submenu Xcollapse">
+            <li><a class="nav-link" href="#">Submenu item 8 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 9 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 10 </a></li>
+            <li><a class="nav-link" href="#">Submenu item 11 </a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"> Demo link </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"> Menu item </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"> Something </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"> Other link </a>
+        </li>
+      </ul>
+      Navigation -->
+    </nav>
+  </div>
+  <div class="col">
+    <button class="btn btn-outline-dark btn-light d-lg-none mt-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu">
+      <i class="bi bi-three-dots-vertical"></i> Reader docs
+    </button>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Reader docs</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+      </div>
+      <div class="offcanvas-body">
+        <nav class="sidebar Xcard py-2 mb-4">
+          <!-- Navigation -->
+<ul class="nav flex-column" id="nav_accordion">
+    <li class="nav-item">
+        <a class="nav-link" href="reader.html">Risø TL/OSL reader </a>
+    </li>
+    <li class="nav-item has-submenu">
+        <a class="nav-link" href="reader-details.html"> Reader details <i class="bi small bi-caret-down-fill"></i> </a>
+        <ul class="submenu Xcollapse">
+            <li><a class="nav-link" href="reader-dash.html"> DASH </a></li>
+            <li><a class="nav-link" href="reader-irradiation.html"> Irradiation sources </a></li>
+            <li><a class="nav-link" href="reader-sg.html"> Single grain </a> </li>
+            <li><a class="nav-link" href="reader-stimulation.html"> Stimulation sources </a> </li>
+            <li><a class="nav-link" href="reader-pulsing.html"> Pulsed OSL </a> </li>
+            <li><a class="nav-link" href="reader-bleaching.html"> Bleaching </a> </li>
+            <li><a class="nav-link" href="reader-rl.html"> Radioluminescence </a> </li>
+            <li><a class="nav-link" href="reader-camera.html"> Sample camera </a> </li>
+            <li><a class="nav-link" href="reader-xrf.html"> X-ray fluorescence </a> </li>
+            <li><a class="nav-link" href="reader-accessories.html"> Accessories </a> </li>
+        </ul>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="reader-customers.html"> Customer list </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="reader-downloads.html"> Downloads </a>
+    </li>
+</ul>
+<!-- Navigation -->
+        </nav>
+
+        <!-- <div>
+          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists,
+          etc.
+        </div>
+        <div class="dropdown mt-3">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            Dropdown button
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </div> -->
+      </div>
+    </div>
+
+    
+
+<h1 class="risoe-h1">TL/OSL Reader customer list</h1>
+
+<p>Automated TL/OSL reader systems, models Risø TL/OSL-DA-8/12/14/15/20, have been delivered to the following customers:</p>
+
+<h4>Africa</h4>
+<p>
+    Zohra Lounis-Mokrani , Commisariat à lénergie atomique , Algeria
+    <br> Mr. Mostefai, University of Setif, Setif, Algeria
+    <br> Dr. W. S. Downey, University of Botswana, Botswana
+    <br> Miss. Belaabed Raja, University Sidi Mohamed Ben Abdellah of Fes, Casablanca, Morocco
+    <br> Dr. I. Umar, Ahmadu Bello University, Zaria, Kaduna, Nigeria
+    <br> Dr. Stephan Woodborne, QUADRU, Environmentek, Pretoria, South Africa
+    <br> Dr. Makaiko Chitambo, Rhodes University, Grahamstown, South Africa
+    <br> Dr. George Susino, University of Witwatersrand, Johannesburg, South Africa
+</p>
+
+<h4>Asia</h4>
+<p>
+    Dr. Zohra Lounis-Mokrani, Centre de Recherche Nucléaire d'Alger , Alger, Algeria
+    <br> Ms. Yanjing Zhang, Beijing Clovertech Limited Company, Beijing, China
+    <br> Dr. Tan Huarong, Chengdu Hatong Museum, Chengdu, China
+    <br> Dr. Yue Barong, China Center for Disease Control, Beijing, China
+    <br> Mr. Junxiang Zhao, China Earthquake Administration, Beijing, China
+    <br> Dr. Li Han, China Institute of Atomic Energy , Beijing, China
+    <br> Dr. Zhang Cheng, China University of Geosciences, Wuhan, China
+    <br> Dr. Lin Xiao, China University of Geosciences , Wuhan, China
+    <br> Dr. Bao Wenbo, Department of Archaeology, Peking University, China
+    <br> Dr. L. Zhou, Department of Geology, Peking University, China
+    <br> Prof. ChunXiang Zhang, Department of Physics, Zhongshan University, Guangzhou, China
+    <br> Dr. Zhao Hui, Environmental and Eng. Research Institute, Lanzhou, Gansu, China
+    <br> Dr. L. Zhou, Geological Department, University of Peking, Beijing, China
+    <br> Prof. Huaya Lu, Inst. of Environment, Quinghai Inst. of Salt Lake, China
+    <br> Mr. Tang Hongbin, Inst. of Salt Lakes, China
+    <br> Dr. Wang , Institute of Earth Environment, Chinese Academy of Sciences , Xian, China
+    <br> Dr. Liu Jinfeng, Institute of Geology, China Earthquake Administration, Beiing, China
+    <br> Dr. Chen Jie, Institute of Geology, China Earthquake Administration, Beiing, China
+    <br> Dr. Zhao Hua, Institute of Geology, Chinese Academy of Sciences, Beijing, China
+    <br> Dr. Yuan Wenzan, Jingdezhen Ceramic Inspection and Test Center , Jiangxi, China
+    <br> Dr. Yuxin Fan, Lanzhou University, Lanzhou, China
+    <br> Dr. Shuangwen Yi, Nanjing University, Nanjing, China (2)
+    <br> Dr. Hao Long, Nanjing University, State Key Laboratory of Lake Science and Environment , Nanjing, China
+    <br> Dr. Yanli Zhang, National Institute of Metrology, Beijing, China
+    <br> Dr. Lirong Yang, Northwest University, Xi'an, China
+    <br> Prof. Dr. ZhongPing Lai, Quinghai Salt Lake Institute , XiNing, China (2)
+    <br> Dr. Wang Weida. Research Lab. for Conserv. and Archaeol., Shanghai Museum, Shanghai, China
+    <br> Mr. Wu Lai Ming, Shanghai Museum, Shanghai, China
+    <br> Shizuan Prov. Environmental Bureau, Shizuan , China
+    <br> Prof. C. Chang Huang/Jiangli Pang, Shaanxi Normal University, Shaanxi, China
+    <br> Dr. Lufang, Unit for Appr. Cult. Relics of Guangdong, Guangzhou, China
+    <br> Dr. Sheng-Hua Li, University of Hong Kong, Hong Kong, China
+    <br> Prof. Zhengyao Jin, University of Science and Technology of China, Hefei, China
+    <br> Dr. Chengfa, Xinjiang Technical Institute of Physics & Chemistry, UrumquI, China
+    <br> Dr. P.L. Leung, Dept. of Physics & Materials Science, City University of Hong Kong., Hong Kong
+    <br> Prof. S. Cheung, Gold Forest Laboratory LtD., Kowloon, Hong Kong
+    <br> Dr. S.H. Li, Radoisotope unit, Univ of Hong Kong, Hong Kong
+    <br> Dr. D. Lo, The Chinese University of Hong Kong, Dept. of Physics, Hong Kong, Hong Kong
+    <br> Earnie Tsang, C-Link, Hong Kong, Hong Kong
+    <br> Dr. S.H. Li., Radio Isotope Unit, University of Hong Kong, Hong Kong
+    <br> Dr. Pratik Kumar, All India Institute of Medical Science, Delhi, India
+    <br> Dr. Bhushan Dhabekar, Bhaba Atomic Research Centre, Mumbai, India
+    <br> Dr. Dilep Koul, Bhaba Atomic Research Centre, Mumbai, India
+    <br> Dr. Bhalla, Geological Survey of India, Calcutta, India
+    <br> Dr. Saini, Geological Survey of India, Faridabad, India (3)
+    <br> Dr. Javed Malik, Indian Institute of Technology, Kanpur, India
+    <br> Dr. M.T.Jose, Indira Ghandi Centre ofr Atomic Research, Kalpakkam, India
+    <br> Dr. B.S. Sukhija, National Geophysical Research Institute, Hyderabad, India
+    <br> Prof. A.K. Singhvi, Physical Research Laboratory, Ahmedabad, India (3)
+    <br> Dr. D. Banerjee, Physical Research Laboratory, Ahmedabad, India
+    <br> Prof. R.K. Gartia, Physics Department, Manipur University, Imphal, India
+    <br> Dr. L.M. Sharma, Punjab Engineering College, Punjab, India
+    <br> Dr. T.N. Bagati, Wadia Inst. of Himalayan Geology, Dehra Dun, India
+    <br> Dr. Pradeep Srivastava, Wadia Inst. of Himalayan Geology, India
+    <br> Dr. M. P. Chougaonkar, Environmental Assessment Division, BARC, Mumbai, India
+    <br> Prof. A.K. Singhvi, Physical Research Laboratory, Ahmedabad, India
+    <br> Dr. N. Porat, Geological Survey of Israel, Jerusalem, Israel (2)
+    <br> Dr. Kazu Tanaka, CRIEPI, Geology and Geotechnology, Abiko Research Center, Japan
+    <br> Dr. S. Tsukamoto, Dept. of Geography, Tokyo Metropolitan University, Japan
+    <br> Dr. Toru Tamura, Geological Survey and Applied Geoscience Geological Survey of Japan, AIST Central , Ibaraki, Japan (3)
+    <br> Dr. H. Yamazaki, Institute of Silk Road Studies, Tokyo, Japan
+    <br> Dr. M. Takada, Nara Woman’s University, Nara, Japan (2)
+    <br> Dr. Yajima, SEIKO EG&G, Tokyo, Japan
+    <br> University of Tokyo, Tokyo, Japan
+    <br> Prof. K.T. Hwang, Chonbuk National University, Chonju, South Korea
+    <br> Dr. Kim MyungJin, Chungchung Cultural Prop. Research Inst., South Korea
+    <br> Dr. Kim, GiDong, Korea Institute of Geoscience, Daejeon, South Korea
+    <br> Dr. Jungil Lee, Korea Atomic Energy Research Institute, Daejeon, South Korea
+    <br> Dr. ChangSik Cheong, Korea Basic Science Institute, Daejeon, South Korea
+    <br> Dr. J. H. Choi, Korea Basic Science Institute, Daejeon, South Korea (2)
+    <br> Dr. Jun Hwang Bang, Korea Institute of Geoscience & Mineral Resources (KIGAM), Daejeon, South Korea
+    <br> Korean Food and Drug Administration, Seoul, South Korea (2)
+    <br> Korean Food and Drug Administration, Daejeon, South Korea
+    <br> Byeong-Keun Kim, Nong Shim Co., Ltd., Seoul, South Korea
+    <br> Dr. Hong Sayong, Physics Department, Kongju National University, South Korea
+    <br> Mr. M.S. Yoon, SCADA Engineering, Seoul, South Korea
+    <br> Dr. D.G. Hong, University of Kangwon, Kangwon, South Korea
+    <br> Mr Ibrahim, IAEA Syria, AECS, Syria
+    <br> Dr. P.H. Shao, Central Geological Survey, Taipei, Taiwan
+    <br> Dr. Chen, National Taiwan University, Taipei, Taiwan (2)
+    <br> Dr. Punya Charusiri, Faculty of Science, University of Chulalongkorn, Thailand
+    <br> Dr. B. Wangcharoenroong, Off. of Atom. Energy f. Peace, Bangkok, Thailand (2)
+</p>
+
+<h4>Europe</h4>
+<p>
+    Prof. C. Spötl, Institute for Geology and Palaeontology, University of Innsbruck, Austria
+    <br> Dr. M. Fiebig, Univ. of Natural Res. and Appl. Life Sciences, Vienna, Austria
+    <br> Dr. Christoph Spötl, Universität Innsbruck, Innsbruck, Austria
+    <br> Dr. P. Van den Haute, University of Gent, Belgium (2)
+    <br> Dr. Daniela Ekendahl, Czech National Radiaction Protection Institut, Prague, Czech Rep.
+    <br> Prof. K. Lund Rasmussen, Inst. of Physics, Odense University, Denmark
+    <br> Dr. A. Murray, Nord. Lum. Dating Lab., Univ. of Aarhus, Denmark (7)
+    <br> Dr. V. Mejdahl, Nord. Lum. Dating Lab., Denmark
+    <br> Dr. V. Mejdahl, Nordic Luminescence Lab., Denmark, Denmark (3)
+    <br> Dr. P. Christensen, Risø National Lab., Denmark
+    <br> Dr. C. Kronborg, Aarhus University, Denmark, Denmark
+    <br> Dr. H. Jungner, Helsinki University, Dating Lab., Finland
+    <br> Prof. T. Jaakkola, Helsinki University, Finland
+    <br> Dr. N. Mercier, Centre des Faibles Radioactives, CNRSCEA, Gif sur Yvette, France
+    <br> Dr. F. Trompier, Inst. de Radioprotection et de Sürete, FontenayauxRoses, France
+    <br> Dr. G. Querre, Research Laboratory, Louvre Museum, Paris, France
+    <br> Dr. O. Langevin, TL dating Laboratory, Grenoble, France (2)
+    <br> Dr. N. Mercier, Université de Bordeaux, Pessac Cedex, France (2)
+    <br> Prof. G.A. Wagner, Archaeometry Lab., Max Planck Inst., Heidelberg, Germany
+    <br> Dr. Maurer, ASA Laboratory, WadgassenWerbeln, Germany (2)
+    <br> Dr. A. Dalheimer, Bundesamt fur Strahlenschutz, Salzgitter, Germany
+    <br> Dr. H. Delincee, Bundesamt für Ernärung, Karlsruhe, Germany
+    <br> Dr. I. Straub, Chemical and Veterinary Institute, Karlsruhe, Germany
+    <br> Dr. C. Weitenberg, Chemical and Veterinary Institute, Münster, Germany
+    <br> Prof. U. Radtke, Dept. of Geography, University of Cologne, Germany (2)
+    <br> Prof. H. Brueckner, Dept. of Geography, Phillips University, Marburg, Germany
+    <br> Dr. L. Zoeller, Dept. of Geomorphology, University of Bayreuth, Germany
+    <br> Dr. Ernst Pernicka, Eberhard Karls Universität Tübingen , Tübingen , Germany
+    <br> Dr. D. Regulla, G.S.F., Neuherberg, Germany
+    <br> Dr. Y. Goksu, G.S.F., Neuherberg, Germany (2)
+    <br> Dr. Y. Goksu, G.S.F. Neuherberg, Neuherberg, Germany
+    <br> Dr. Manfred Frechen, GGA Institut, Hannover, Germany (3)
+    <br> Prof. W. Stolz, Inst. for Appl. Physics, Freiberg, Germany
+    <br> Dr. G. A. Schreiber, Inst. for Social Medicine, Berlin, Germany
+    <br> Dr. S. Mass, Institute for Radiation Protection (BFS), Munich, Germany
+    <br> Prof. L. Zoeller, Institute of Geography, University of Bonn, Germany
+    <br> Dr. Jürgen Pfordt, Lebensmittelinstitut Oldenburg, Oldenburg, Germany
+    <br> Prof. G. Wagner, Max Planck Institute, Heidelberg, Germany
+    <br> Dr. Fitzsimmons, Max Planck Institute, Leipzig, Germany (2)
+    <br> Dr. Daniel Richter, Max Planck Institute, Leipzig, Germany
+    <br> Dr. E. Piesch, Nuclear Research Centre, KFK, Karlsruhe, Germany
+    <br> Dr. A. Martin, Physical Geography Department, Humboldt University, Berlin, Germany
+    <br> Dr. P. Ambrosi, PhysikalishTechnische Bundesanstalt (PTB), Germany
+    <br> Dr. C. Goedicke, Rathgen Research Lab., Berlin, Germany
+    <br> Dr. Anette Kadereit, Uni. Heidelberg, Heidelberg, Germany (3)
+    <br> Prof. U. Radtke. Geogr. Inst., Univ. of Cologne, Germany
+    <br> Dr. Helmut Brückner, Univ. of Marburg, Marburg, Germany
+    <br> Dr. M. Fuchs, University of Bayreuth, Bayreuth, Germany
+    <br> Dr. M. Frechen, University of Cologne, Geol. Inst., Germany
+    <br> Dr. M. Frechen, University of Hannover, Germany (2)
+    <br> Dr. Annette Kadereit, University of Heidelberg, Germany
+    <br> Dr. Alexandra Hilgers, Universität zu Köln, Köln, Germany
+    <br> Dr. M. NuechterFrangos, BBGESILAT, Berlin, Germany.
+    <br> Dr. C. Weiss, Bundesamt für Strahlenschutz, Salzgitter, Germany.
+    <br> Dr. N. Tsirliganis, Archaeometry Laboratory, C.E.T.I., Xanthi, Greece
+    <br> Dr. N. Zacharias, Laboratory of Archaeometry, Institute of Materials Science, Attiki, Greece
+    <br> Dr. N. Asteriadis, Thessaloniki, Thessaloniki, Greece
+    <br> Prof. K. Ioannides, University of Ioannina, Ioanina, Greece
+    <br> Dr. Kostas Stamoulis, University of Ioannina, Ioanina, Greece
+    <br> Dr. Timea Kiss, Department of Geography, University of Szeged, Hungary
+    <br> Dr. Sipos Gyorgy, Department of Physical Geography and Geoinformatics, University of Szeged, Hungary
+    <br> Dr. Annamaria Nador, Geological Institute of Hungary, Budapest, Hungary
+    <br> Dr. Tonino Oliva, University of Calabria, Rende, Italien
+    <br> Prof. S.O. Troja, Catania University, Italy (3)
+    <br> Prof. M. Martini, Department of Materials Science, University of Milan, Italy
+    <br> Dr. L. Schiavulli, Department of Physics, University of Bari, Italy
+    <br> Prof. S.O. Troja, Department of Physics, University of Catania, Italy
+    <br> Prof. G. Bonino, Dipt. de Fisica Generale, Universita Degli Study di Torino, Italy
+    <br> Dr. E. Chiaravalle, Inst. Zooprofilattico Speriental, Foggia, Italy
+    <br> Dr. R. Bedogni, National Institute of Nuclear Physics, Frascati, Italy
+    <br> Dr. S. Onori, Physics Laboratory, Instituto Superiore di Sanita, Rome, Italy
+    <br> Mr. Pawel Bilski, Hendryk Niewodniczanski Inst.of Nuclear Physics, Krakow, Poland
+    <br> Dr. W. Stachowicz, Inst. of Nucl. Chemistry and Technology, Warszawa, Poland
+    <br> Prof. H.L. Oczkowski, Nicolaus Copernicus University, Torun, Poland
+    <br> Alicja Chruścińska, Nicolaus Copernicus University, Torun, Poland (2)
+    <br> Mr. Jaroslaw Kusiak, The Maria Curie-Skłodowska University , Lublin, Poland
+    <br> Dr. Prudencio ITN, ITN, Sacavém, Portugal
+    <br> Dr. J. C. Soares, Institute of Nuclear Technology, Sacavém, Portugal.
+    <br> Dr. Isabel Dias, ITN, Sacavém, Portugal.
+    <br> Dr. Dan Mihailescu, Ai. I. Cuza University of Iasi, Iasi, Romania
+    <br> Dr. Constantin Cutrubinis, Horia Hulubei Inst, Bucharest, Rumænien
+    <br> Dr. Constantin Cosma, Universitat Bables Boyal , Cluj-Napoca, Rumænien
+    <br> Prof. V. Stepanenko, MED Lab., MRRC RAMS, Obninsk, Russia
+    <br> Dr. Karlin, Siberian Branch of Russian Academy of Science, Novosibirsk, Russia
+    <br> Dr. Heinz Veitz / Dr. Frank Preusser, University of Bern , Bern, Schweiz (2)
+    <br> Dr. Sally Lowick, University of Bern , Bern, Schweiz
+    <br> Dr. Frederic Herman, University of Lausanne, Lausanne, Schweiz
+    <br> Dr. David Sanderson, SUERC, Glasgow, Scotland
+    <br> Juraj Janocko / Diana Dirnerova, Technical University of Kosice, Kosice, Slovak Republic
+    <br> Dr. A. Delgado, Basic Research Dept. CIEMAT, Madrid, Spain
+    <br> Dr. A. Delgado, Basic Research Dept., CIEMAT, Madrid, Spain
+    <br> Dr. Lee Arnold, CENIEH, Burgos, Spain (2)
+    <br> Dr. P. Beneitez, Faculty of Science, The Autonome University of Madrid, Spain
+    <br> Dr. D. Mosquera, Institute Xeoloxia, University of Coruna, Spain
+    <br> Dr. T. Calderon, University of Madrid, Madrid, Spain
+    <br> Helena Alexandersson, Lunds University Hostital, Lund, Sweden
+    <br> Dr. S. Mattsson, Malmoe University Hospital, Malmoe, Sweden
+    <br> Dr. F. Preusser, Institute of Geology, Bern, Switzerland
+    <br> Dr. C. Gemperle, Kantonales Labor Aargau, Aarau, Switzerland
+    <br> Dr. A.J.J. Bos, Delft University of Technology, Delft, The Netherlands (2)
+    <br> Dr. J. Wallinga, Netherl. Centre for Lum. Dating, Delft University, The Netherlands (3)
+    <br> Prof. P. Ypma, University of Delft, Delft, The Netherlands
+    <br> Prof. Yegingil, Cukurova University, Cukuova, Turkey
+    <br> Prof. N.G. Kiyak, Physics Department, Isik University, Istanbul, Turkey
+    <br> Dr. R. Grun, Cambridge University, Cambridge, UK
+    <br> Prof. F. Chambers, Cent. f. Env. Change and Quat. Research, Cheltenham College, UK
+    <br> Dr. M. Frechen, Cheltenham & Gloucester Coll. of Higher Education, Cheltenham College, UK
+    <br> Dr. M. Clarke, Department of Earth Sciences, University of Nottingham, UK
+    <br> Prof. H. Rendell, Department of Geography, Loughborough University, UK
+    <br> Dr. A. Gemmell, Department of Geography, University of Aberdeen, Scotland, UK
+    <br> Prof. A. Lang, Department of Geography, University of Liverpool, UK
+    <br> Prof. Rob Kemp, Department of Geography, University of London, UK
+    <br> Dr. Kai Rothkamm, Health Protection Agency, Centre for Radiation, Chemical & Environmental Hazards, Chilton, UK
+    <br> Dr. H. McKerrell, Loch Ranza Centre, Scotland, UK
+    <br> Dr. D. Stoneham, Oxford Authentication Ltd, Wantage, UK (2)
+    <br> Prof. M. Aitken, Oxford University, Oxford, UK
+    <br> Dr. D. Stoneham, Oxford University, Oxford, UK
+    <br> Dr. E. Rhodes, RLAHA, Oxford, UK
+    <br> Dr. R. Bailey, Royal Holloway, University of London, UK
+    <br> Dr. E. Rhodes, Royal Holloway University of London, University of London, UK
+    <br> Dr. Simon Armitage, Royal Holloway University of London, University of London, UK (2)
+    <br> Dr. R. Robinson, School of Geog. and Goesc., Univ. of St Andrews, UK
+    <br> Dr. M. L. Clarke, School of Geography, University of Nottingham, UK
+    <br> Dr. S. Stokes, School of Geology, Oxford University, UK (3)
+    <br> Dr. David Sanderson, SUERC, Scotland, UK
+    <br> Dr. D.C.W. Sanderson, SURRC, East Kilbride, Scotland, UK
+    <br> Dr. D.C.W. Sanderson, SURRC, East Kilbride, Scotland, UK
+    <br> Dr. A. Gemmell, Univ. of Aberdeen, Scotland, UK
+    <br> Prof. D. Thomas, Univ. of Sheffield, Dept. of Geography, Sheffield, UK
+    <br> Dr. L.P. Zhou, University of Cambridge, Cambridge, UK
+    <br> Dr. I. K. Bailiff, University of Durham, UK (2)
+    <br> Dr. Andrew Carr, University of Leicester, Leicester, UK
+    <br> Dr. Sven Lukas, University of London, London, UK (3)
+    <br> Dr. D. Stoneham, University of Oxford, UK
+    <br> Dr. M. Bateman, University of Sheffield, Sheffield, UK
+    <br> Prof. M.J. Tooley, University of St Andrews, Fife, Scotland, UK
+    <br> Prof. H. Rendell, University of Sussex, Brighton, UK (2)
+    <br> Dr. Ann Wintle, University of Wales, Aberystwyth, UK (2)
+    <br> Dr. G.A.T. Duller, University of Wales, Aberystwyth, UK (8)
+    <br> Dr. Christoph Spötl, Univ., Innsbruck , Innsbruck, Østrig
+</p>
+
+<h4>North America</h4>
+<p>
+    Prof. M. Lamothe, Department of Earth Sciences, University of Quebec, Montreal, Canada
+    <br> Dr. C. L. Larsson, Radiological Analysis and Defence Dept., Ottawa, Canada
+    <br> Prof. J. Rink, School of Geography and Geology, McMaster University, Ontario, Canada
+    <br> Prof. J. Rink, School of Geography and Geology, McMaster University, Ontario, Canada (2)
+    <br> Dr. Olav Lian, Univ.College of Fraiser Valley, Canada
+    <br> Dr. D.I. GodfreySmith, Dalhousie Univ., Halifax, Canada
+    <br> Dr. M. Barboza Flores, University of Sonora, Hermosillo, Mexico
+    <br> Dr. Rodrigo Meléndrez Amavizca, University of Sonora, Hermosillo, Mexico (2)
+    <br> Dr. Regina DeWitt, East Carolina University, Greenville, USA
+    <br> General Electrics, Albany, USA
+    <br> Prof. C. Lipo, Department of Anthropology, California State University, USA
+    <br> Prof. L. A. Owen, Department of Geology, University of Cincinnati, USA
+    <br> Dr. K. Lepper, Department of Geosciences, University of North Dakota, USA
+    <br> Dr. Mike Blum, Department of Geosciences, University of Nebraska, Lincoln, USA
+    <br> Prof. S. Forman, Dept. of Earth and Env. Sciences, University of Illinois, Chicago, USA
+    <br> Prof. G.A. Brook, Dept. of Geography, University of Georgia, USA
+    <br> Prof. S.W.S. McKeever, Dept. of Physics, Oklahoma State University, USA
+    <br> Dr. Glenn Berger, Earth & EcoSystems Institute, USA
+    <br> Prof. Glenn Berger, Earth & Eco-Systems Institute, Reno, USA (2)
+    <br> Dr. T. Ritenour, Geology Department, Utah State University, USA
+    <br> Dr. C. Wilson, Los Alamos National Laboratory, New Mexico, USA (2)
+    <br> Prof. S.W.S. McKeever, Physics Department, Oklahoma State University, USA (2)
+    <br> Dr. R. Gaza, Space Radiation Analysis Group, NASA Johnson Space Center, Houston, USA
+    <br> Dr. S. Mahan, U.S. Geological Survey, Denver, Colorado, USA
+    <br> Dr. E. Haskell, Univ. of Utah, Salt Lake City, USA
+    <br> Dr. Ron Goble, University of Lincoln, Nebraska, Lincoln, USA (2)
+    <br> Dr. Ed Rhodes, University of California, Los Angeles, USA
+    <br> Dr. J. Feathers, University of Washington, Seattle, USA (2)
+</p>
+
+<h4>Oceania</h4>
+<p>
+    Prof. J. Prescott, Adelaide University, Australia
+    <br> Prof. J. Chappell, Austr.Nat.Univ., Canberra, Australia
+    <br> Dr. N. Spooner, Australian National University, Canberra, Australia
+    <br> Dr. J. Ollie, CSIRO Land & Water, Canberra, Australia
+    <br> Dr. Gary Caitcheon, CSIRO, Div. of Water Reources, Canberra, Australia
+    <br> Dr. J. Olley, CSIRO, Div. of Water Reources, Canberra, Australia
+    <br> Dr. A. Murray, CSIRO, Div. of Water Res., Canberra, Australia
+    <br> Dr. Tim Pietch, Griffith University, Nathan, Australia (2)
+    <br> Prof. A. Gleadow, La Trobe University, Melbourne, Australia
+    <br> Dr. R.G. Roberts, La Trobe University, Melbourne, Australia
+    <br> Dr. Kira Westaway, MacQuarie University, Sydney, Australia
+    <br> Dr. A. Murray, Office of Superv. Scientists, Jabiru, Australia
+    <br> Dr. R.G. Roberts, School of Earth Sciences, University of Melbourne, Australia
+    <br> Prof. G. C. Nanson, School of Geosciences, University of Wollongong, Australia
+    <br> Dr. R. Roberts, School of Geosciences, University of Wollongong, Australia
+    <br> Dr. R. Roberts, School of Geosciences, Univ. of Wollongong, Australia
+    <br> Dr. Frances Williams, University of Adelaide , Adelaide, Australia
+    <br> Dr. D. Price, University of Wollongong, Australia (2)
+    <br> Mr. Jose Abrantes, University of Wollongong, Wollingong, Australia
+    <br> Dr. U. Rieser, Geological Department, University of Wellington, New Zealand
+    <br> Dr. J. Schulmeister, Victoria University, Wellington, New Zealand
+</p>
+
+<h4>South America</h4>
+<p>
+    Dr. Hudson Rubio Ferreira, Commissao Nacional Energia Nuclear , Belo Horizonte, Brazil
+    <br> Dr. Sonia Hatsue Tatumi, Faculdade de Tecn. de São Paulo, Sao Paulo, Brazil
+    <br> Dr. Linda Caldas, Inst. Pesq. Energet. Nucl. (IPEN), Sao Paulo, Brazil
+    <br> Dr. J. Hunt, Instituto de Radioprotecao e Dosimetria, Rio de Janeiro, Brazil
+    <br> Dr. Elisabeth Yoshimura, Universidade de Sao Paolo, Sao Paulo, Brazil
+    <br> Dr. Gabriel O. Sawakuci, Universidade de Sao Paolo, Sao Paulo, Brazil
+    <br> Dr. N.L. del Mastro, Inst. Pesq. Energet. Nucl. (IPEN), Sao Paulo, Brazil.
+    <br> Dr. Eduardo Haroldo Montoya Rossi, Instituto Peruano de Energia Nuclear, Lima, Peru
+</p>
+
+
+  </div>
+</div>
+
+
+    <div class="container" style="background-color: #e3f2fd;">
+    <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-3 py-5 my-3 border-top ps-5">
+        <div class="col mb-2">
+            <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
+                <img src="./logo/risoe.svg" alt="RISØ" width="125" height="60">
+                <!--
+                <span class="badge text-bg-danger">RISØ</span>
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap" />
+                </svg>
+                -->
+            </a>
+            <p class="text-body-secondary">&copy; 2024, DTU Physics</p>
+            <h5 class="mt-4">Product catalogue</h5>
+            <p class="text-body-secondary"><a href="https://www.fysik.dtu.dk/english/-/media/institutter/fysik/research/radiation-physics/produkter-og-services/radiation_measurement_instruments/tl_osl_reader/brochure/product-catalogue-2103a.pdf" class="nav-link p-0 text-body-secondary">Download PDF</a></p>
+        </div>
+
+        <div class="col mb-2">
+            <h5>Contact</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2">Product information:
+                </li>
+                <li class="nav-item mb-2"><a href="mailto:osl@ntech.dtu.dk" class="nav-link p-0 text-body-secondary">osl@ntech.dtu.dk</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"></a>&nbsp;</li>
+                <li class="nav-item mb-2">Technical support:
+                </li>
+                <li class="nav-item mb-2"><a href="mailto:oslservice@ntech.dtu.dk" class="nav-link p-0 text-body-secondary">oslservice@ntech.dtu.dk</a></li>
+            </ul>
+        </div>
+
+        <div class="col mb-2">
+            <h5>Quick links</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="https://www.dtu.dk/english/" class="nav-link p-0 text-body-secondary">DTU</a></li>
+                <li class="nav-item mb-2"><a href="https://www.fysik.dtu.dk/english/" class="nav-link p-0 text-body-secondary">DTU Physics</a></li>
+                <li class="nav-item mb-2"><a href="https://www.fysik.dtu.dk/english/research-sections/lumphys/research/luminescence-physics" class="nav-link p-0 text-body-secondary">Luminescence Physics</a></li>
+                <li class="nav-item mb-2"><a href="index.html" class="nav-link p-0 text-body-secondary">Radiation Instruments</a></li>
+                <li class="nav-item mb-2"><a href="reader.html" class="nav-link p-0 text-body-secondary">Risø TL/OSL Reader</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
+  </div>
+
+  <script src="./bootstrap/bootstrap.bundle.min.js"></script>
+  <script>
+    var filename = window.location.pathname;
+    // var link = filename.substring(1, (filename.length - 5));
+    var link = filename.replace('dist/', '').replace('/', '').replace('.html', '')  // for test environment
+    let navlink = document.querySelector('[href^=' + link + ']')
+    navlink.classList.add('active')
+  </script>
+</body>
+
+</html>
